@@ -6,7 +6,7 @@ class TuitionForms(forms.ModelForm):
     class Meta:
         model = models.TuitionsModel
         # fields = '__all__'
-        exclude = ['user']
+        exclude = ['user', 'is_apply']
 
 
 class ReviewForms(forms.ModelForm):

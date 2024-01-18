@@ -28,6 +28,7 @@
                         {{ request.user.first_name }}
                     </a>                    
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url "user_profiles" %}">Profile</a></li>
                         <li><a class="dropdown-item" href="{% url "update_profile" %}">Update Profile</a></li>
                         <li><a class="dropdown-item" href="{% url "pass_change" %}">Change Password</a></li>
                     </ul>

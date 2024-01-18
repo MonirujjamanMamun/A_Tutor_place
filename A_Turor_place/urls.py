@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('class/<slug:slugs>/', home, name='class_slug'),
-    # path('profiles/', include('profiles.urls'), name='profiles'),
+    path('profiles/', include('profiles.urls'), name='profiles'),
     # path('reviews', include('reviews.urls'), name='reviews'),
     path('tuitions/', include('tuitions.urls'), name='tuitions'),
     path('users/', include('users.urls'), name='users'),

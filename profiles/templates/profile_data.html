@@ -1,18 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<section class="container mx-auto row-cols-1 row-cols-md-3 g-4 my-4">
-    <div class='d-flex '>
-        {% for class in cls %}
-        <div class="col">
-            <h3><a href="{% url 'class_slug' class.slug %}" class='mx-1 btn btn-primary'>{{class.name}}</a></h3>
-        </div>
-        {% endfor %}
-    </div>
-</section>
+
 <section class='container my-3'>
-    <h4 class='my-3'>{{tuitions | length}} results found</h4>
+    {% comment %} <h4 class='my-3'>{{tuitions | length}} results found</h4> {% endcomment %}
     <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% if tuitions.is_apply == True and tuitions.tuition_types == 'Accepted' %}
         {% for tuition in tuitions %}
         <div class="col">
             <div class="card h-100">
@@ -23,17 +16,15 @@
                     <p class="card-text">Fee: {{tuition.fee}}</p>
                     
                     {% comment %} <a href="{% url 'details' tuition.id %}" class='btn btn-primary' type='submit'>Details</a> {% endcomment %}
-                    {% if request.user.is_superuser %}
-                    <a href='{% url "edit_tuition" tuition.id %}' class='btn btn-primary my-1' type='submit'>Edit</a>
-                    <a href='{% url "delete_tuition" tuition.id %}' class='btn btn-primary my-1' type='submit'>Delete</a>
-                    {% elif request.user.is_authenticated %}
-                    <a href='{% url "apply_tuition" tuition.id %}' class='btn btn-primary my-1' type='submit'>Apply for tution</a>
-                {%endif%}
+                    
                 
                 </div>
             </div>
         </div>
         {% endfor %}
+        {%else%}
+        <h2>No result found</h2>
+        {% endif %}
     </div>
 
 </section>

@@ -19,9 +19,11 @@ class TuitionsModel(models.Model):
     # user = models.OneToM(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to="tuitions/images/")
+    books_img = models.ImageField(
+        upload_to='tuitions/media/uploads/', blank=True, null=True)
     fee = models.IntegerField()
     cls = models.ManyToManyField(UserClassModel)
+    is_apply = models.BooleanField(default=False)
     tuition_types = models.CharField(
         choices=TUITION_TYPES, max_length=10, default="Pending")
 
