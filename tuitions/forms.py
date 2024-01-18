@@ -9,9 +9,13 @@ class TuitionForms(forms.ModelForm):
         exclude = ['user', 'is_apply']
 
 
+# class ReviewForms(forms.ModelForm):
+#     model = models.ReviewModel
+#     fields = '__all__'
 class ReviewForms(forms.ModelForm):
-    model = models.ReviewModel
-    fields = '__all__'
+    class Meta:
+        model = models.ReviewModel
+        fields = ['name', 'email', 'body']
 
 
 class ClassModel(forms.ModelForm):

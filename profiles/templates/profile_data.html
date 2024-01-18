@@ -1,31 +1,70 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <section class='container my-3'>
-    {% comment %} <h4 class='my-3'>{{tuitions | length}} results found</h4> {% endcomment %}
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {% if tuitions.is_apply == True and tuitions.tuition_types == 'Accepted' %}
-        {% for tuition in tuitions %}
-        <div class="col">
-            <div class="card h-100">
-                {% comment %} <img src="{{ tuition.books_img.url }}" class="card-img-top" alt=""> {% endcomment %}
-                <div class="card-body">
-                    <h5 class="card-title">{{tuition.title}}</h5>
-                    <p class="card-text">{{tuition.description | truncatewords:10}}</p>
-                    <p class="card-text">Fee: {{tuition.fee}}</p>
-                    
-                    {% comment %} <a href="{% url 'details' tuition.id %}" class='btn btn-primary' type='submit'>Details</a> {% endcomment %}
-                    
+    {% if request.user.is_superuser %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for tuition in tuitions %}
+            {% if tuition.is_apply %}
+            <div class="col">
+                <div class="card h-100">
+                    {% comment %} <img src="{{ tuition.books_img.url }}" class="card-img-top" alt=""> {% endcomment %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{tuition.title}}</h5>
+                        <p class="card-text">{{tuition.description}}</p>
+                        <p class="card-text">Fee: {{tuition.fee}}</p>                  
+                        <a href="{% url "admin_aprove" tuition.id %}" class='btn btn-primary' type='submit'>Approve</a>            
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    {% elif request.user.is_authenticated %}
+        <div class="">
+            {% for tuition in tuitions %}
+            {% if tuition.tuition_types == 'Accepted' %}
+            <div class="col my-1">
+                <div class="card h-100">
+                    {% comment %} <img src="{{ tuition.books_img.url }}" class="card-img-top" alt=""> {% endcomment %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{tuition.title}}</h5>
+                        <p class="card-text">{{tuition.description}}</p>
+                        <p class="card-text">Fee:{{tuition.fee}}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            <div class="col">
+                <div class="card m-2">
+                    <h5 class="p-3">Total Comments : {{comments | length}}</h5>
+                    {% for comment in comments %}
+                <div class="card-body border m-2">
+                        <p><b>{{comment.name}}</b> {{comment.created_on}}</p>
+                        <p>{{comment.body}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col">
+                <div class="card m-2">
+                    <div class="card-body">
+                        <form method="post">
+                            <h1>Add Comment</h1>
+                            {% csrf_token %}
+                            {{comment_form | crispy}}
                 
+                            <button class="btn btn-warning">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
-        {%else%}
-        <h2>No result found</h2>
-        {% endif %}
-    </div>
+    {%endif%}
 
 </section>
 {% endblock %}
