@@ -10,7 +10,7 @@ from . import models
 def add_tuition(request):
     if request.user.is_superuser:
         if request.method == 'POST':
-            tuition_form = forms.TuitionForms(request.POST)
+            tuition_form = forms.TuitionForms(request.POST, request.FILES)
             if tuition_form.is_valid():
                 tuition_form.instance.author = request.user
                 tuition_form.save()

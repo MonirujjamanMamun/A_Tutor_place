@@ -10,7 +10,7 @@
             {% if tuition.is_apply %}
             <div class="col">
                 <div class="card h-100">
-                    {% comment %} <img src="{{ tuition.books_img.url }}" class="card-img-top" alt=""> {% endcomment %}
+                    <img src="{{ tuition.books_img.url }}" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{tuition.title}}</h5>
                         <p class="card-text">{{tuition.description}}</p>
@@ -23,12 +23,12 @@
             {% endfor %}
         </div>
     {% elif request.user.is_authenticated %}
-        <div class="">
+        <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
             {% for tuition in tuitions %}
             {% if tuition.tuition_types == 'Accepted' %}
             <div class="col my-1">
                 <div class="card h-100">
-                    {% comment %} <img src="{{ tuition.books_img.url }}" class="card-img-top" alt=""> {% endcomment %}
+                    <img src="{{ tuition.books_img.url }}" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{tuition.title}}</h5>
                         <p class="card-text">{{tuition.description}}</p>
@@ -39,7 +39,7 @@
             </div>
             {% endif %}
             {% endfor %}
-
+        </div>
             <div class="col">
                 <div class="card m-2">
                     {% for review in reviews %}
@@ -51,7 +51,7 @@
                 </div>
             </div>
             
-        </div>
+        
     {%endif%}
 
 </section>

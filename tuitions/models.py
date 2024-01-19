@@ -19,8 +19,8 @@ class TuitionsModel(models.Model):
     # user = models.OneToM(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     description = models.TextField()
-    # books_img = models.ImageField(
-    #     upload_to='tuitions/media/uploads/', blank=True, null=True)
+    books_img = models.ImageField(
+        upload_to='tuitions/media/uploads/', blank=True, null=True)
     fee = models.IntegerField()
     cls = models.ManyToManyField(UserClassModel)
     is_apply = models.BooleanField(default=False)

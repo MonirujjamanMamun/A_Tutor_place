@@ -4,7 +4,7 @@
 
 
 <h1 class='text-2xl text-white my-3 text-center'>Add Tution page</h1>
-<form style="width:50% ; margin : auto" method="post">
+<form style="width:50% ; margin : auto" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 {{form | crispy}}
 
