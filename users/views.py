@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import FormView
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.views import View
 from django.shortcuts import redirect
@@ -44,7 +44,7 @@ class UserAccountUpdateView(View):
         form = UserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('home')  # Redirect to the user's profile page
+            return redirect('home')
         return render(request, self.template_name, {'form': form})
 
 

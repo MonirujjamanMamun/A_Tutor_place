@@ -33,7 +33,7 @@
                         <h5 class="card-title">{{tuition.title}}</h5>
                         <p class="card-text">{{tuition.description}}</p>
                         <p class="card-text">Fee:{{tuition.fee}}</p>
-                        
+                        <a href="{% url "detail_review" %}" class='btn btn-primary' type='submit'>Review</a> 
                     </div>
                 </div>
             </div>
@@ -42,27 +42,15 @@
 
             <div class="col">
                 <div class="card m-2">
-                    <h5 class="p-3">Total Comments : {{comments | length}}</h5>
-                    {% for comment in comments %}
+                    {% for review in reviews %}
                 <div class="card-body border m-2">
-                        <p><b>{{comment.name}}</b> {{comment.created_on}}</p>
-                        <p>{{comment.body}}</p>
+                        <p><b>{{review.name}}</b> {{review.created_on}}</p>
+                        <p>{{review.body}}</p>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <div class="col">
-                <div class="card m-2">
-                    <div class="card-body">
-                        <form method="post">
-                            <h1>Add Comment</h1>
-                            {% csrf_token %}
-                            {{comment_form | crispy}}
-                
-                            <button class="btn btn-warning">Submit</button>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     {%endif%}
 

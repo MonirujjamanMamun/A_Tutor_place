@@ -19,9 +19,8 @@ class UserRegistrationForm(UserCreationForm):
         fields = ['username', 'password1', 'password2', 'first_name', 'last_name',
                   'email', 'birth_date', 'gender', 'postal_code', 'city', 'education', 'street_address']
 
-        # form.save()
     def save(self, commit=True):
-        our_user = super().save(commit=False)  # ami database e data save korbo na ekhn
+        our_user = super().save(commit=False)
         if commit == True:
             our_user.save()
             gender = self.cleaned_data.get('gender')
@@ -62,7 +61,6 @@ class UserUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # jodi user er account thake
         if self.instance:
             try:
                 user_account = self.instance.account
@@ -84,7 +82,6 @@ class UserUpdateForm(forms.ModelForm):
         if commit:
             user.save()
 
-            # jodi account thake taile seta jabe user_account ar jodi account na thake taile create hobe ar seta created er moddhe jabe
             user_account, created = UserAccountModels.objects.get_or_create(
                 user=user)
             user_address, created = UserAddressModel.objects.get_or_create(
