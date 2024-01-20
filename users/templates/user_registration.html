@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block head_title %}Banking System{% endblock %} {% block content %} 
+{% extends 'base.html' %} {% load static %} {% block head_title %}A Tutor Place{% endblock %} {% block content %} 
 
 {% if form.non_field_errors %} {% for error in form.non_field_errors %}
 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
@@ -13,7 +13,7 @@
 {% endfor %} {% endif %}
 
 <div class="bg-white px-3 py-4 rounded-xl my-6">
-    <h1 class="font-bold text-3xl text-center pb-5">Sign In</h1>
+    <h1 class="font-bold text-3xl text-center pb-5 uppercase">Sign In</h1>
     <div class="w-full mt-10">
         <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             {% csrf_token %} {% for hidden_field in form.hidden_fields %} {{ hidden_field.errors }} {{ hidden_field }} {% endfor %}
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" type="submit">
                     Register
                 </button>
             </div>

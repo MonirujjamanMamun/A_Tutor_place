@@ -24,9 +24,9 @@ urlpatterns = [
     path('', home, name='home'),
     path('class/<slug:slugs>/', home, name='class_slug'),
     path('profiles/', include('profiles.urls'), name='profiles'),
-    # path('reviews', include('reviews.urls'), name='reviews'),
+    path('reviews/', include('reviews.urls'), name='reviews'),
     path('tuitions/', include('tuitions.urls'), name='tuitions'),
     path('users/', include('users.urls'), name='users'),
-    # path('core/', include('core.urls'), name='core'),
+    path('core/', include('core.urls'), name='cores'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

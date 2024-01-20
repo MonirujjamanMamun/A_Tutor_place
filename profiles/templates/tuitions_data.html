@@ -12,10 +12,10 @@
                 <div class="card h-100">
                     <img src="{{ tuition.books_img.url }}" class="card-img-top" alt="">
                     <div class="card-body">
-                        <h5 class="card-title">{{tuition.title}}</h5>
-                        <p class="card-text">{{tuition.description}}</p>
-                        <p class="card-text">Fee: {{tuition.fee}}</p>                  
-                        <a href="{% url "admin_aprove" tuition.id %}" class='btn btn-primary' type='submit'>Approve</a>            
+                        <h5 class="card-title text-xl">{{tuition.title}}</h5>
+                        <p class="card-text"><span class='fw-bold'>Description: </span>{{tuition.description |truncatewords:10}}</p>
+                        <p class="card-text"><span class='fw-bold'>Fee: </span> {{tuition.fee}}</p>                  
+                        <a href="{% url "admin_aprove" tuition.id %}" class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Approve</a>            
                     </div>
                 </div>
             </div>
@@ -30,26 +30,17 @@
                 <div class="card h-100">
                     <img src="{{ tuition.books_img.url }}" class="card-img-top" alt="">
                     <div class="card-body">
-                        <h5 class="card-title">{{tuition.title}}</h5>
-                        <p class="card-text">{{tuition.description}}</p>
-                        <p class="card-text">Fee:{{tuition.fee}}</p>
-                        <a href="{% url "detail_review" %}" class='btn btn-primary' type='submit'>Review</a> 
+                        <h5 class="card-title text-xl">{{tuition.title}}</h5>
+                        <p class="card-text"><span class='fw-bold'>Description</span>{{tuition.description |truncatewords:10}}</p>
+                        <p class="card-text"><span class='fw-bold'>Fee:</span>{{tuition.fee}}</p>
+                        <a href="{% url "review" tuition.id %}" class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Review</a> 
                     </div>
                 </div>
             </div>
             {% endif %}
             {% endfor %}
         </div>
-            <div class="col">
-                <div class="card m-2">
-                    {% for review in reviews %}
-                <div class="card-body border m-2">
-                        <p><b>{{review.name}}</b> {{review.created_on}}</p>
-                        <p>{{review.body}}</p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+            
             
         
     {%endif%}

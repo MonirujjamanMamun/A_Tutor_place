@@ -1,32 +1,52 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<section class="container d-flex align-items-center my-5">
+    <section class="text-gray-600 body-font">
+        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+          <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Country's #1 Tutor
+              <br class="hidden lg:inline-block">Matching
+              &amp Learning Platform.
+            </h1>
+            <p class="mb-8 leading-relaxed text-xl">Hire a conversant tutor to make your children's learning fun, comprehensive &amp easier.</p>
+            <div class="flex justify-center">
+              <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">For More Details</button>
+              
+            </div>
+          </div>
+          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+            <img src="{% static 'Educator.png' %}" alt="">
+          </div>
+        </div>
+      </section>
+</section>
 <section class="container mx-auto row-cols-1 row-cols-md-3 g-4 my-4">
-    <div class='d-flex '>
+    <div class='d-flex g-1'>
         {% for class in cls %}
         <div class="col">
-            <h3><a href="{% url 'class_slug' class.slug %}" class='mx-1 btn btn-primary'>{{class.name}}</a></h3>
+            <h3><a href="{% url 'class_slug' class.slug %}" class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg uppercase'>{{class.name}}</a></h3>
         </div>
         {% endfor %}
     </div>
 </section>
 <section class='container my-3'>
-    <h4 class='my-3'>{{tuitions | length}} results found</h4>
+    {% comment %} <h4 class='my-3'>{{tuitions | length}} results found</h4> {% endcomment %}
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for tuition in tuitions %}
         <div class="col">
             <div class="card h-100">
                 <img src="{{ tuition.books_img.url }}" class="card-img-top" alt="">
                 <div class="card-body">
-                    <h5 class="card-title">{{tuition.title}}</h5>
-                    <p class="card-text">{{tuition.description }}</p>
-                    <p class="card-text">Fee: {{tuition.fee}}</p>
+                    <h2 class="text-2xl mb-2">{{tuition.title}}</h2>
+                    <p class="card-text"><span class='fw-bold'>Description: </span>{{tuition.description |truncatewords:10 }}</p>
+                    <p class="card-text"><span class='fw-bold'>Fee: </span> {{tuition.fee}}</p>
                     
                     {% if request.user.is_superuser %}
-                    <a href='{% url "edit_tuition" tuition.id %}' class='btn btn-primary my-1' type='submit'>Edit</a>
-                    <a href='{% url "delete_tuition" tuition.id %}' class='btn btn-primary my-1' type='submit'>Delete</a>
+                    <a href='{% url "edit_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Edit</a>
+                    <a href='{% url "delete_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Delete</a>
                     {% elif request.user.is_authenticated %}
-                    <a href='{% url "apply_tuition" tuition.id %}' class='btn btn-primary my-1' type='submit'>Apply for tution</a>
+                    <a href='{% url "apply_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Apply for tution</a>
                 {%endif%}
                 
                 </div>

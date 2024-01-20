@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="my-5">
+    <div class="col my-1">
+        <div class="card h-100">
+            <div class=''>
+                <img class='w-1/2 mx-auto rounded-md mt-1' src="{{ object.books_img.url }}" class="card-img-top" alt="">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-xl text-center">{{object.title}}</h5>
+                <p class="card-text"><span class='fw-bold'>Description : </span>{{object.description }}</p>
+                <p class="card-text"><span class='fw-bold'>Fee: </span>{{object.fee}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col">
+    <div class="card m-2">
+        <h5 class="p-3">Total Comments : {{comments | length}}</h5>
+        {% for review in comments %}
+        <div class="card-body border m-2">
+            <p><b>{{review.name}}</b> {{review.created_on}}</p>
+            <p>{{review.body}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="col">
+    <div class="card m-2">
+        <div class="card-body">
+            <form method="post">
+                <h1 class='text-2xl text-center my-4'>Add Comment</h1>
+                {% csrf_token %}
+                {{comment_form | crispy}}
+    
+                <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Submit</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

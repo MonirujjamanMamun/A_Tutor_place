@@ -9,12 +9,6 @@ class TuitionForms(forms.ModelForm):
         exclude = ['user', 'is_apply']
 
 
-class ReviewForms(forms.ModelForm):
-    class Meta:
-        model = models.ReviewModel
-        fields = ['name', 'body']
-
-
 class ClassModel(forms.ModelForm):
     model = models.UserClassModel
     fields = '__all__'
