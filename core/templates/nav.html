@@ -14,7 +14,7 @@
                     Home
                 </a>
                 {% if request.user.is_authenticated and not request.user.is_superuser %}
-                <a href="" class="block mt-4 lg:inline-block lg:mt-0 text-blue-900 hover:text-red-900 hover:font-black mr-4">
+                <a href="{% url "about" %}" class="block mt-4 lg:inline-block lg:mt-0 text-blue-900 hover:text-red-900 hover:font-black mr-4">
                     About Us
                 </a>
                 <a href="{% url "contuct" %}" class="block mt-4 lg:inline-block lg:mt-0 text-blue-900 hover:text-red-900 hover:font-black mr-4">
@@ -35,7 +35,7 @@
                     </a>                    
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url "usertuitions" %}">All Tuitions</a></li>
-                        <li><a class="dropdown-item" href="{% url "profile" %}">Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url "profile" request.user.id %}">Profile</a></li>
                         <li><a class="dropdown-item" href="{% url "update_profile" %}">Update Profile</a></li>
                         <li><a class="dropdown-item" href="{% url "pass_change" %}">Change Password</a></li>
                     </ul>

@@ -11,7 +11,7 @@
             </h1>
             <p class="mb-8 leading-relaxed text-xl">Hire a conversant tutor to make your children's learning fun, comprehensive &amp easier.</p>
             <div class="flex justify-center">
-              <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">For More Details</button>
+              <button class="ms-3 inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">For More Details</button>
               
             </div>
           </div>
@@ -21,17 +21,20 @@
         </div>
       </section>
 </section>
+
+  <h1 class='text-2xl text-center my-10 text-indigo-500 uppercase fw-bold '>All Classes</h1>
 <section class="container mx-auto row-cols-1 row-cols-md-3 g-4 my-4">
-    <div class='d-flex g-1'>
+    <div class='d-flex g-1 mx-auto mb-12'>
         {% for class in cls %}
         <div class="col">
-            <h3><a href="{% url 'class_slug' class.slug %}" class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg uppercase'>{{class.name}}</a></h3>
+            <h3><a href="{% url 'class_slug' class.slug %}" class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ms-3 focus:outline-none hover:bg-indigo-600 rounded text-lg uppercase'>{{class.name}}</a></h3>
         </div>
         {% endfor %}
     </div>
 </section>
 <section class='container my-3'>
     {% comment %} <h4 class='my-3'>{{tuitions | length}} results found</h4> {% endcomment %}
+    <h1 class='text-2xl text-center my-10 text-indigo-500 uppercase fw-bold'>All Tutor</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for tuition in tuitions %}
         <div class="col">
@@ -46,7 +49,7 @@
                     <a href='{% url "edit_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Edit</a>
                     <a href='{% url "delete_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Delete</a>
                     {% elif request.user.is_authenticated %}
-                    <a href='{% url "apply_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Apply for tution</a>
+                    <a href='{% url "apply_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-3' type='submit'>Apply for tution</a>
                 {%endif%}
                 
                 </div>

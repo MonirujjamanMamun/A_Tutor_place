@@ -15,3 +15,7 @@ def home(request, slugs=None):
 
 class ContuctUs(TemplateView):
     template_name = 'contuct_us.html'
+
+
+class AboutUs(TemplateView):
+    template_name = 'about_us.html'
