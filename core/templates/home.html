@@ -32,10 +32,12 @@
         {% endfor %}
     </div>
 </section>
+
 <section class='container my-3'>
     {% comment %} <h4 class='my-3'>{{tuitions | length}} results found</h4> {% endcomment %}
     <h1 class='text-2xl text-center my-10 text-indigo-500 uppercase fw-bold'>All Tutor</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% if tuitions|length != 0 %}
         {% for tuition in tuitions %}
         <div class="col">
             <div class="card h-100">
@@ -56,6 +58,11 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class='mx-auto'>
+          <h1 class='text-2xl text-center my-20'>No Tutor Found</h1>
+        <div>
+        {% endif %}
     </div>
 
 </section>

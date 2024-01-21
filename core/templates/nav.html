@@ -35,7 +35,9 @@
                     </a>                    
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url "usertuitions" %}">All Tuitions</a></li>
+                        {% if not request.user.is_superuser%}
                         <li><a class="dropdown-item" href="{% url "profile" request.user.id %}">Profile</a></li>
+                        {% endif %}
                         <li><a class="dropdown-item" href="{% url "update_profile" %}">Update Profile</a></li>
                         <li><a class="dropdown-item" href="{% url "pass_change" %}">Change Password</a></li>
                     </ul>
