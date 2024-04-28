@@ -1,4 +1,11 @@
 {
+  "builds": [
+    {
+      "src": "A_Turor_place/wsgi.py",
+      "use": "@ardnt/vercel-python-wsgi",
+      "config": { "maxLambdaSize": "15mb" }
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",
