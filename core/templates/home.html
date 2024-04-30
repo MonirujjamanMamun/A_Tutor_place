@@ -78,48 +78,56 @@
 
 
   <h1 class='text-2xl text-center my-20 mt-24 text-indigo-500 uppercase fw-bold '>All Classes</h1>
-<section class="container mx-auto row-cols-1 row-cols-md-3 g-4 my-4">
-    <div class='d-flex g-1 mx-auto mb-12'>
+<section class="container mx-auto my-4">
+    <div class='grid lg:grid-cols-5 sm:grid-cols-1 sm:justify-items-center justify-items-center md:grid-cols-3 gap-4 mx-auto mb-12'>
         {% for class in cls %}
-        <div class="col">
-            <h3><a href="{% url 'class_slug' class.slug %}" class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ms-3 focus:outline-none hover:bg-indigo-600 rounded text-lg uppercase'>{{class.name}}</a></h3>
+        <div class="">
+            <h3><a href="{% url 'class_slug' class.slug %}" class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 ms-3 focus:outline-none hover:bg-gray-500 rounded text-lg uppercase'>{{class.name}}</a></h3>
         </div>
         {% endfor %}
     </div>
 </section>
 
-<section class='container my-3'>
-    {% comment %} <h4 class='my-3'>{{tuitions | length}} results found</h4> {% endcomment %}
-    <h1 class='text-2xl text-center my-20 text-indigo-500 uppercase fw-bold'>All Tutor</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col">
+      <div class="h-1 bg-gray-200 rounded overflow-hidden">
+        <div class="w-24 h-full bg-indigo-500"></div>
+      </div>
+      <div class="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+        <h1 class="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0 uppercase">Our All teacher</h1>
+        <p class="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">We have an excellent teacher to child ratio at our Kindergarten to ensure that each child receives the attention he or she needs.</p>
+      </div>
+    </div>
+    <div class="grid lg:grid-cols-3 sm:grid-cols-1 sm:justify-items-center justify-items-center md:grid-cols-2 gap-4 mt-3">
       {% if tuitions|length != 0 %}
         {% for tuition in tuitions %}
-        <div class="col">
-            <div class="card h-100">
-                <img src="{{ tuition.books_img.url }}" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h2 class="text-2xl mb-2">{{tuition.title}}</h2>
-                    <p class="card-text"><span class='fw-bold'>Description: </span>{{tuition.description |truncatewords:10 }}</p>
-                    <p class="card-text"><span class='fw-bold'>Fee: </span> {{tuition.fee}}</p>
-                    
-                    {% if request.user.is_superuser %}
-                    <a href='{% url "edit_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Edit</a>
-                    <a href='{% url "delete_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Delete</a>
-                    {% elif request.user.is_authenticated %}
-                    <a href='{% url "apply_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-3' type='submit'>Apply for tution</a>
-                {%endif%}
-                
-                </div>
-            </div>
+      <div class="p-3 sm:mb-0 mb-6 shadow-md rounded">
+        <div class="rounded-lg h-64 overflow-hidden">
+          <img alt="content" class="object-cover object-center h-full w-full" src={{ tuition.books_img.url }}>
         </div>
-        {% endfor %}
-        {% else %}
-        <div class='mx-auto'>
-          <h1 class='text-2xl text-center my-20'>No Tutor Found</h1>
-        <div>
-        {% endif %}
+        <h2 class="text-xl font-medium title-font text-gray-900 mt-3">{{tuition.fee}}$</h2>
+        <h2 class="text-xl font-medium title-font text-gray-900 mt-3">{{tuition.title}}</h2>
+        <p class="text-base leading-relaxed mt-2">{{tuition.description |truncatewords:30 }}</p>
+        {% if request.user.is_superuser %}
+                  <a href='{% url "edit_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Edit</a>
+                  <a href='{% url "delete_tuition" tuition.id %}' class='inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg' type='submit'>Delete</a>
+                  {% elif request.user.is_authenticated %}
+                  <div class='text-center'>
+                    <a href='{% url "apply_tuition" tuition.id %}' class=' text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg mt-3 text-center' type='submit'>Apply for tution</a>
+                  </div>
+              {%endif%}
+       
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class='mx-auto'>
+        <h1 class='text-2xl text-center my-20'>No Tutor Found</h1>
+      <div>
+      {% endif %}
+      
     </div>
-
+  </div>
 </section>
 
 <section class="text-gray-600 body-font mt-24">
@@ -147,7 +155,7 @@
 </section>
 
 <section class="text-gray-600 body-font">
-<div class="container px-5 py-24 mx-auto">
+  <div class="container px-5 py-24 mx-auto">
   <h1 class="text-3xl font-medium title-font text-indigo-500 mb-3 text-center">Testimonials About Place</h1>
   <p class='text-center text-lg mb-12'>We have an excellent teacher to child ratio<br> at our Kindergarten to ensure that each child receives the attention he or she needs</p>
   <div class="flex flex-wrap -m-4">
@@ -183,4 +191,7 @@
   </div>
 </div>
 </section>
+
+  
+
 {% endblock %}
